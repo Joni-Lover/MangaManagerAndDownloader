@@ -136,6 +136,7 @@ public class MangaManager extends javax.swing.JFrame {
         removeSubscriptionButton = new javax.swing.JButton();
         addSubscriptionButton = new javax.swing.JButton();
         downloaderButton = new javax.swing.JButton();
+        markAllReadSubscription = new javax.swing.JButton();
 
         openMenuItem.setText("Open");
         openMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -154,6 +155,9 @@ public class MangaManager extends javax.swing.JFrame {
         subscriptionPopupMenu.add(updateMenuItem);
 
         markAlllReadMenuItem.setText("Mark all as read");
+        markAlllReadMenuItem.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        markAlllReadMenuItem.setMultiClickThreshhold(2L);
+        markAlllReadMenuItem.setName(""); // NOI18N
         markAlllReadMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 markAlllReadMenuItemActionPerformed(evt);
@@ -205,6 +209,13 @@ public class MangaManager extends javax.swing.JFrame {
             }
         });
 
+        markAllReadSubscription.setText("Mark all Read");
+        markAllReadSubscription.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                markAllReadSubscriptionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -212,29 +223,32 @@ public class MangaManager extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(subscriptionsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(downloaderButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(addSubscriptionButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(removeSubscriptionButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addSubscriptionButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(updateAllButton)))
+                        .addComponent(markAllReadSubscription, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(updateAllButton))
+                    .addComponent(subscriptionsScrollPane))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(subscriptionsScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(subscriptionsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 547, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addSubscriptionButton)
+                    .addComponent(downloaderButton)
                     .addComponent(removeSubscriptionButton)
-                    .addComponent(updateAllButton)
-                    .addComponent(downloaderButton))
-                .addContainerGap())
+                    .addComponent(markAllReadSubscription)
+                    .addComponent(updateAllButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -383,6 +397,21 @@ public class MangaManager extends javax.swing.JFrame {
         SubscriptionsList.save(subscriptions);
     }//GEN-LAST:event_markAlllReadMenuItemActionPerformed
 
+    private void markAllReadSubscriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_markAllReadSubscriptionActionPerformed
+        // Newly Added : as right click doesn' work for OSX
+        // Select the subscription and mark it as read
+        final Subscription subscription = getSelectedSubscription();
+
+        if (subscription == null) {
+            return;
+        }
+
+        subscription.markAllAsRead();
+
+        subscriptionsTableModel.fireTableDataChanged();
+        SubscriptionsList.save(subscriptions);
+    }//GEN-LAST:event_markAllReadSubscriptionActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -416,6 +445,7 @@ public class MangaManager extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addSubscriptionButton;
     private javax.swing.JButton downloaderButton;
+    private javax.swing.JButton markAllReadSubscription;
     private javax.swing.JMenuItem markAlllReadMenuItem;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem removeMenuItem;

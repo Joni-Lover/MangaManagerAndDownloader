@@ -479,7 +479,7 @@ public class MangaDownloader extends javax.swing.JFrame {
         downloadPanelLayout.setHorizontalGroup(
             downloadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(downloadPanelLayout.createSequentialGroup()
-                .addComponent(downloadScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
+                .addComponent(downloadScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(downloadPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(removeDownloadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -494,7 +494,9 @@ public class MangaDownloader extends javax.swing.JFrame {
                 .addComponent(stopDownloadButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(removeDownloadButton))
-            .addComponent(downloadScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(downloadPanelLayout.createSequentialGroup()
+                .addComponent(downloadScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         splitPane.setRightComponent(downloadPanel);
@@ -617,9 +619,11 @@ public class MangaDownloader extends javax.swing.JFrame {
                         List<Image> imageLinks;
 
                         try {
+                            System.out.println(".run()"+download.getChapter());
                             imageLinks = download.getSite().getChapterImageLinks(download.getChapter());
                         } catch (Exception ex) {
                             download.setState(Download.State.ERROR);
+                            System.out.println(ex);
                             setMessage(download,
                                     "Error while getting image links!");
                             c++;
@@ -700,6 +704,7 @@ public class MangaDownloader extends javax.swing.JFrame {
                             download.setState(Download.State.ERROR);
                             setMessage(download,
                                     "Error while downloading images!");
+                            System.out.println(ex.getMessage());
                             c++;
                             continue;
                         }

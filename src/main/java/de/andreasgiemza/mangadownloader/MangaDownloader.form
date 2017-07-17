@@ -353,7 +353,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="downloadScrollPane" pref="691" max="32767" attributes="0"/>
+                      <Component id="downloadScrollPane" min="-2" pref="691" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                           <Component id="removeDownloadButton" alignment="1" max="32767" attributes="0"/>
@@ -372,7 +372,10 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="removeDownloadButton" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="downloadScrollPane" alignment="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="downloadScrollPane" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
