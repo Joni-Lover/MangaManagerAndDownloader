@@ -30,7 +30,7 @@ public class MangaStream implements Site {
         Set<Manga> mangas = new HashSet<>();
 
         Document doc = JsoupHelper.getHTMLPage(url + "/manga");
-
+//        System.out.println("Got the Manga List");
         Elements rows = doc.select("table[class=table table-striped]").first()
                 .select("tr");
         for (Element row : rows) {
@@ -59,7 +59,7 @@ public class MangaStream implements Site {
                 continue;
             }
 
-            chapters.add(new Chapter(manga, page.select("a").first().attr("href"),
+            chapters.add(new Chapter(manga, "https://mangastream.com"+page.select("a").first().attr("href"),
                     page.select("a").first().text()));
         }
 
@@ -88,7 +88,7 @@ public class MangaStream implements Site {
 
             String link = "http:" + doc.select("img[id=manga-page]").first().attr("src");
             String extension = link.substring(link.length() - 3, link.length());
-
+//            System.out.println(link+referrer+extension);
             imageLinks.add(new Image(link, referrer, extension));
         }
 

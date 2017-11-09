@@ -619,7 +619,7 @@ public class MangaDownloader extends javax.swing.JFrame {
                         List<Image> imageLinks;
 
                         try {
-                            System.out.println(".run()"+download.getChapter());
+//                            System.out.println(".run() : "+download.getChapter());
                             imageLinks = download.getSite().getChapterImageLinks(download.getChapter());
                         } catch (Exception ex) {
                             download.setState(Download.State.ERROR);
