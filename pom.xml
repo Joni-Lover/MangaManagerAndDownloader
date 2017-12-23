@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.andreasgiemza</groupId>
     <artifactId>mangamanageranddownloader</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <name>MMD</name>
     <url>https://github.com/hurik/MangaDownloader</url>
     <dependencies>

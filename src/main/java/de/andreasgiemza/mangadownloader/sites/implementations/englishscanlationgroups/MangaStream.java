@@ -28,9 +28,7 @@ public class MangaStream implements Site {
     @Override
     public List<Manga> getMangaList() throws Exception {
         Set<Manga> mangas = new HashSet<>();
-
         Document doc = JsoupHelper.getHTMLPage(url + "/manga");
-//        System.out.println("Got the Manga List");
         Elements rows = doc.select("table[class=table table-striped]").first()
                 .select("tr");
         for (Element row : rows) {
@@ -49,7 +47,7 @@ public class MangaStream implements Site {
     public List<Chapter> getChapterList(Manga manga) throws Exception {
         List<Chapter> chapters = new LinkedList<>();
 
-        Document doc = JsoupHelper.getHTMLPageMobile(manga.getLink());
+        Document doc = JsoupHelper.getHTMLPageMobile(url+manga.getLink());
 
         Elements pages = doc.select("table[class=table table-striped]").first()
                 .select("tr");
@@ -59,7 +57,7 @@ public class MangaStream implements Site {
                 continue;
             }
 
-            chapters.add(new Chapter(manga, "https://mangastream.com"+page.select("a").first().attr("href"),
+            chapters.add(new Chapter(manga, url+page.select("a").first().attr("href"),
                     page.select("a").first().text()));
         }
 
