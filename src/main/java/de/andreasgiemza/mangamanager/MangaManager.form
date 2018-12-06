@@ -27,6 +27,11 @@
         <MenuItem class="javax.swing.JMenuItem" name="markAlllReadMenuItem">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mark all as read"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Default Cursor"/>
+            </Property>
+            <Property name="multiClickThreshhold" type="long" value="2"/>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="markAlllReadMenuItemActionPerformed"/>
@@ -69,16 +74,18 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="subscriptionsScrollPane" alignment="0" pref="780" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="downloaderButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                      <Component id="addSubscriptionButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="removeSubscriptionButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="addSubscriptionButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="markAllReadSubscription" min="-2" pref="150" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="updateAllButton" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="subscriptionsScrollPane" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -88,15 +95,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="subscriptionsScrollPane" pref="549" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="subscriptionsScrollPane" min="-2" pref="547" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="addSubscriptionButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="removeSubscriptionButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="updateAllButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="downloaderButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="removeSubscriptionButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="markAllReadSubscription" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="updateAllButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -155,6 +163,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="downloaderButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="markAllReadSubscription">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mark all Read"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="markAllReadSubscriptionActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

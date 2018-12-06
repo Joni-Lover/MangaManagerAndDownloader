@@ -38,7 +38,7 @@ public final class JsoupHelper {
 
     public static Document getHTMLPage(String url) throws Exception {
         Exception ex = null;
-
+//        System.out.println("Get HTMLPage "+ url);
         for (int i = 0; i < NUMBER_OF_TRIES; i++) {
             try {
                 return Jsoup.connect(url).maxBodySize(MAX_BODY_SIZE)
@@ -57,7 +57,7 @@ public final class JsoupHelper {
     public static Document getHTMLPageWithPost(String url,
             Map<String, String> post) throws Exception {
         Exception ex = null;
-
+//        System.out.println("Get HTMLPageWithPost "+ url);
         for (int i = 0; i < NUMBER_OF_TRIES; i++) {
             try {
                 return Jsoup.connect(url).maxBodySize(MAX_BODY_SIZE)
@@ -75,7 +75,7 @@ public final class JsoupHelper {
 
     public static Document getHTMLPageMobile(String url) throws Exception {
         Exception ex = null;
-
+//        System.out.println("Get HTMLPageMobile "+ url);
         for (int i = 0; i < NUMBER_OF_TRIES; i++) {
             try {
                 return Jsoup.connect(url).maxBodySize(MAX_BODY_SIZE)
@@ -97,6 +97,7 @@ public final class JsoupHelper {
 
         for (int i = 0; i < NUMBER_OF_TRIES; i++) {
             try {
+//                System.out.println("Get Image "+ imageLink);
                 return Jsoup.connect(imageLink).maxBodySize(MAX_BODY_SIZE)
                         .timeout((i + 1) * 3000).userAgent(USER_AGENT)
                         .ignoreHttpErrors(true).referrer(referrer)
