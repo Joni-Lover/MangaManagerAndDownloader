@@ -7,17 +7,14 @@ import de.andreasgiemza.mangadownloader.data.Image;
 import de.andreasgiemza.mangadownloader.data.Manga;
 import de.andreasgiemza.mangadownloader.helpers.JsoupHelper;
 import de.andreasgiemza.mangadownloader.sites.Site;
-import java.io.StringReader;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.StringReader;
+import java.util.*;
+
 /**
- *
  * @author yuuki
  */
 public class ReadManga implements Site {
@@ -32,13 +29,24 @@ public class ReadManga implements Site {
         List<Manga> mangas = new LinkedList<>();
 
         Document doc = JsoupHelper.getHTMLPage(url + "/list");
+        Elements nav = doc.select("div[class=leftContent]")
+                .first()
+                .select("span[class=pagination]")
+                .first()
+                .select("a");
+        String uri = nav.get(nav.size()-2).attr("href").split("\\?")[1].
+                replaceAll("^.*offset=(?:(\\d+))&.*", "$1");
+        System.out.println(Integer.parseInt(uri));
 
-        for (int i = 0; i <= 10000; i = i + 70) {
+        for (int i = 0; i <= Integer.parseInt(uri); i = i + 70) {
             if (i != 0) {
                 doc = JsoupHelper.getHTMLPage(url + "/list?offset=" + i);
             }
 
-            Elements rows = doc.select("div[class=leftContent]").first().select("div[class=desc]").select("h3");
+            Elements rows = doc.select("div[class=leftContent]")
+                    .first()
+                    .select("div[class=desc]")
+                    .select("h3");
 
             for (Element row : rows) {
                 Element link = row.select("a").first();

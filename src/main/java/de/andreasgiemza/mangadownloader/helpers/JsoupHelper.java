@@ -43,8 +43,10 @@ public final class JsoupHelper {
             try {
                 return Jsoup.connect(url).maxBodySize(MAX_BODY_SIZE)
                         .timeout((i + 1) * 3000).userAgent(USER_AGENT)
+                        .followRedirects(true)
                         .ignoreHttpErrors(true).get();
             } catch (Exception e) {
+                System.err.println(e.getCause().toString());
                 System.err.println("Try " + (i + 1) + " of " + NUMBER_OF_TRIES
                         + ". Link: " + url + ". Error: " + e.getMessage());
                 ex = e;
@@ -97,7 +99,7 @@ public final class JsoupHelper {
 
         for (int i = 0; i < NUMBER_OF_TRIES; i++) {
             try {
-//                System.out.println("Get Image "+ imageLink);
+                System.out.println("Get Image "+ imageLink);
                 return Jsoup.connect(imageLink).maxBodySize(MAX_BODY_SIZE)
                         .timeout((i + 1) * 3000).userAgent(USER_AGENT)
                         .ignoreHttpErrors(true).referrer(referrer)
@@ -110,7 +112,7 @@ public final class JsoupHelper {
                 ex = e;
             }
         }
-
+        System.out.println("Error !!");
         throw ex;
     }
 

@@ -194,10 +194,12 @@ public class MangaDownloader extends javax.swing.JFrame {
                             }
                         }
                     } catch (Exception ex) {
+
                         JOptionPane.showMessageDialog(mangaDownloader,
                                 "Cant't connect to "
                                 + selectedSite.getClass()
-                                .getSimpleName() + "!",
+                                .getSimpleName() + "!\n"
+                                + ex.getMessage(),
                                 "Error", JOptionPane.ERROR_MESSAGE);
                         mangaListTable.clearSelection();
                         lastSelectedManga = null;

@@ -21,7 +21,7 @@ import org.jsoup.select.Elements;
 public class Mangachan implements Site {
 
     private final String name = "Mangachan";
-    private final String url = "http://mangachan.ru/";
+    private final String url = "http://mangachan.me/";
     private final List language = Arrays.asList("Russian");
     private final Boolean watermarks = true;
 
@@ -29,14 +29,17 @@ public class Mangachan implements Site {
     public List getMangaList() throws Exception {
         List mangas = new LinkedList<>();
 
-        Document doc = JsoupHelper.getHTMLPage(url + "/catalog");
+        Document doc = JsoupHelper.getHTMLPage(url + "catalog");
 
-        Elements nav = doc.select("div[id=pagination]")
-                .first().select("span").first().select("a");
+        String[] nav = doc.select("div[id=pagination]")
+                .first().select("span").first().select("a")
+                .last().attr("href").split("=");
+        int pages = Integer.parseInt(nav[1]);
+        System.err.println(pages);
 
-        for (int i = 0; i <= 10000; i = i + 20) {
+        for (int i = 0; i <= pages; i = i + 20) {
             if (i != 0) {
-                doc = JsoupHelper.getHTMLPage(url + "/catalog" + "?offset=" + i);
+                doc = JsoupHelper.getHTMLPage(url + "catalog" + "?offset=" + i);
             }
 
             Elements rows = doc.select("div[id=content]").first()

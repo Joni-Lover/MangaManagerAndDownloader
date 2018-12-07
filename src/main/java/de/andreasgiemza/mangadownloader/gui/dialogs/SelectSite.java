@@ -214,9 +214,13 @@ public class SelectSite extends javax.swing.JDialog {
                     // Save data to file
                     MangaList.save(selectedSite, mangas);
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(loading, "Cant't connect to "
-                            + selectedSite.getName() + "!", "Error",
-                            JOptionPane.ERROR_MESSAGE);
+                    ex.printStackTrace(System.out);
+                    JOptionPane.showMessageDialog(loading,
+                            "Cant't connect to "
+                                    + selectedSite.getName()
+                                    + "!\n"
+                                    + ex.getMessage(),
+                            "Error", JOptionPane.ERROR_MESSAGE);
 
                     loading.dispose();
                     return;
